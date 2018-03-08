@@ -35,29 +35,14 @@ class KMeans implements Clusterer
 
     public function cluster(array $samples): array
     {
-        $space = new Space(count($samples[0]));
-        foreach ($samples as $sample) {
-            $space->addPoint($sample);
+        $space = new Space(count(reset($samples)));
+        foreach ($samples as $key => $sample) {
+            $space->addPoint($sample, $key);
         }
 
         $clusters = [];
         foreach ($space->cluster($this->clustersNumber, $this->initialization) as $cluster) {
             $clusters[] = $cluster->getPoints();
-        }
-
-        return $clusters;
-    }
-
-    public function acluster(array $samples): array
-    {
-        $space = new Space(count(reset($samples)));
-        foreach ($samples as $key => $sample) {
-            $space->addPointWithLabels($sample, $key);
-        }
-
-        $clusters = [];
-        foreach ($space->cluster($this->clustersNumber, $this->initialization) as $cluster) {
-            $clusters[] = $cluster->getPointsWithLabels();
         }
 
         return $clusters;

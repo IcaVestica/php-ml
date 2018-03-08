@@ -40,7 +40,7 @@ class KMeansTest extends TestCase
         ];
 
         $kmeans = new KMeans(2);
-        $clusters = $kmeans->acluster($samples);
+        $clusters = $kmeans->cluster($samples);
 
         $this->assertCount(2, $clusters);
 

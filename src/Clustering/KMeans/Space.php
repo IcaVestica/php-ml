@@ -47,17 +47,9 @@ class Space extends SplObjectStorage
     /**
      * @param null $data
      */
-    public function addPoint(array $coordinates, $data = null): void
+    public function addPoint(array $coordinates, $label = null, $data = null): void
     {
-        $this->attach($this->newPoint($coordinates), $data);
-    }
-
-    /**
-     * @param null $label
-     */
-    public function addPointWithLabels(array $coordinates, $label = null): void
-    {
-        $this->attach($this->newPoint($coordinates, $label));
+        $this->attach($this->newPoint($coordinates, $label), $data);
     }
 
     /**
