@@ -38,6 +38,16 @@ class Cluster extends Point implements IteratorAggregate, Countable
         return $points;
     }
 
+    public function getPointsWithLabels(): array
+    {
+        $points = [];
+        foreach ($this->points as $point) {
+            $points[$point->label] = $point->toArray();
+        }
+
+        return $points;
+    }
+
     public function toArray(): array
     {
         return [

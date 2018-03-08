@@ -35,13 +35,13 @@ class Space extends SplObjectStorage
         return ['points' => $points];
     }
 
-    public function newPoint(array $coordinates): Point
+    public function newPoint(array $coordinates, $label = null): Point
     {
         if (count($coordinates) != $this->dimension) {
             throw new LogicException('('.implode(',', $coordinates).') is not a point of this space');
         }
 
-        return new Point($coordinates);
+        return new Point($coordinates, $label);
     }
 
     /**
@@ -50,6 +50,14 @@ class Space extends SplObjectStorage
     public function addPoint(array $coordinates, $data = null): void
     {
         $this->attach($this->newPoint($coordinates), $data);
+    }
+
+    /**
+     * @param null $label
+     */
+    public function addPointWithLabels(array $coordinates, $label = null): void
+    {
+        $this->attach($this->newPoint($coordinates, $label));
     }
 
     /**
